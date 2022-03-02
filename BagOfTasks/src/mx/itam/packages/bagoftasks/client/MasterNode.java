@@ -23,7 +23,7 @@ public class MasterNode {
 
             Task[] imageTasks = new Task[10];
             Task[] miningTasks = new Task[20];
-            Task[] BioTasks = new Task[15];
+            Task[] bioTasks = new Task[15];
 
             int i = 1;
             int j = 5;
@@ -32,7 +32,28 @@ public class MasterNode {
                 i++;
                 switch (j){
                     case 20: j = 30;
-                    case
+                    case 30: j = 5;
+                    default: j = j + 5;
+                }
+            }
+            j = 5;
+            for (Task task:miningTasks) {
+                task = new Task("T"+i, "Mineria",j);
+                i++;
+                switch (j){
+                    case 20: j = 30;
+                    case 30: j = 5;
+                    default: j = j + 5;
+                }
+            }
+            j = 5;
+            for (Task task:bioTasks) {
+                task = new Task("T"+i, "Bioinformatica",j);
+                i++;
+                switch (j){
+                    case 20: j = 30;
+                    case 30: j = 5;
+                    default: j = j + 5;
                 }
             }
 
