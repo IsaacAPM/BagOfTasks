@@ -20,7 +20,7 @@ public class MasterNode {
         String name = "BagOfTasks";
         try {
             Registry registry = LocateRegistry.getRegistry("148.205.133.194");
-
+            //ESTE ES UN COMENTARIO
             Task[] imageTasks = new Task[10];
             Task[] miningTasks = new Task[20];
             Task[] BioTasks = new Task[15];
