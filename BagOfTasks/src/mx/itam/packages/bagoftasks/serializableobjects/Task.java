@@ -30,12 +30,12 @@ public class Task implements Serializable {
         this.requirementId = requirementId;
     }
 
-    public int getLength() {
+    public long getLength() {
         return length;
     }
 
     public void setLength(int length) {
-        this.length = length;
+        this.length = length*1000;
     }
 
     public String getOutput() {
