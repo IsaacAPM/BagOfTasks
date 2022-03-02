@@ -5,13 +5,13 @@ import java.io.Serializable;
 public class Task implements Serializable {
     private String taskId;
     private String requirementId;
-    private int length;
+    private long length;
     private String output;
 
     public Task(String taskId, String requirementId, int length) {
         this.taskId = taskId;
         this.requirementId = requirementId;
-        this.length = length;
+        this.length = length*1000;
     }
 
     public String getTaskId() {

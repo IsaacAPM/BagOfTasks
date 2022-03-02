@@ -20,11 +20,21 @@ public class MasterNode {
         String name = "BagOfTasks";
         try {
             Registry registry = LocateRegistry.getRegistry("148.205.133.194");
-            //ESTE ES UN COMENTARIO
+
             Task[] imageTasks = new Task[10];
             Task[] miningTasks = new Task[20];
             Task[] BioTasks = new Task[15];
 
+            int i = 1;
+            int j = 5;
+            for (Task task:imageTasks) {
+                task = new Task("T"+i, "Imagenes",j);
+                i++;
+                switch (j){
+                    case 20: j = 30;
+                    case
+                }
+            }
 
         } catch (RemoteException e) {
             e.printStackTrace();
