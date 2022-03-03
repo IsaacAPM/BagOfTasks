@@ -15,12 +15,6 @@ import java.rmi.server.UnicastRemoteObject;
 public class MasterNode {
 
     public static void main(String[] args) {
-        System.setProperty("java.security.policy",
-                "src/mx/itam/packages/bagoftasks/client/client.policy");
-
-        if(System.getSecurityManager() == null) {
-            System.setSecurityManager(new SecurityManager());
-        }
 
         String name = "BagOfTasks";
         try {
@@ -30,46 +24,50 @@ public class MasterNode {
             Task[] miningTasks = new Task[20];
             Task[] bioTasks = new Task[15];
 
-            int i = 1;
-            int j = 5;
-            for (Task task:imageTasks) {
-                task = new Task("T"+i, "Imagenes",j);
-                i++;
-                switch (j){
-                    case 20: j = 30;
+            int j = 1;
+            int k = 5;
+            for(int i=0;i<10;i++){
+                imageTasks[i] = new Task("T"+j, "Imagenes",k);
+                j++;
+                switch (k){
+                    case 20: k = 30;
                         break;
-                    case 30: j = 5;
+                    case 30: k = 5;
                         break;
-                    default: j = j + 5;
-                        break;
-                }
-            }
-            j = 5;
-            for (Task task:miningTasks) {
-                task = new Task("T"+i, "Mineria",j);
-                i++;
-                switch (j){
-                    case 20: j = 30;
-                        break;
-                    case 30: j = 5;
-                        break;
-                    default: j = j + 5;
+                    default: k = k + 5;
                         break;
                 }
             }
-            j = 5;
-            for (Task task:bioTasks) {
-                task = new Task("T"+i, "Bioinformatica",j);
-                i++;
-                switch (j){
-                    case 20: j = 30;
+
+
+            k = 5;
+            for(int i=0;i<20;i++){
+                miningTasks[i] = new Task("T"+j, "Mineria",k);
+                j++;
+                switch (k){
+                    case 20: k = 30;
                         break;
-                    case 30: j = 5;
+                    case 30: k = 5;
                         break;
-                    default: j = j + 5;
+                    default: k = k + 5;
                         break;
                 }
             }
+
+            k = 5;
+            for(int i=0;i<15;i++){
+                bioTasks[i] = new Task("T"+j, "Bioinformatica",k);
+                j++;
+                switch (k){
+                    case 20: k = 30;
+                        break;
+                    case 30: k = 5;
+                        break;
+                    default: k = k + 5;
+                        break;
+                }
+            }
+
 
             MyThread bioNodo = new MyThread(registry,bioTasks);
             MyThread minNodo = new MyThread(registry,miningTasks);
@@ -81,9 +79,11 @@ public class MasterNode {
             minNodo.start();
             imgNodo.start();
 
-            bioNodo.join();
-            minNodo.join();
             imgNodo.join();
+            minNodo.join();
+            bioNodo.join();
+
+
 
             long end = System.currentTimeMillis();
             System.out.println(end-start);
@@ -106,14 +106,16 @@ public class MasterNode {
 
         public void run(){
             try {
-                SlaveNode slave = (SlaveNode) this.registry.lookup(this.bag[0].getRequirementId());
 
                 for(Task task:this.bag) {
                     if (task.getRequirementId().equals("Imagenes")) {
+                        ImageProcessing slave = (ImageProcessing) this.registry.lookup(this.bag[0].getRequirementId());
                         slave.executeImageTask(task);
                     } else if (task.getRequirementId().equals("Mineria")) {
+                        DataMining slave = (DataMining) this.registry.lookup(this.bag[0].getRequirementId());
                         slave.executeDataTask(task);
                     } else if (task.getRequirementId().equals("Bioinformatica")) {
+                        Bioinformatics slave = (Bioinformatics) this.registry.lookup(this.bag[0].getRequirementId());
                         slave.executeBioTask(task);
                     } else {
                         System.out.println("Tipo de servicio invàlido");

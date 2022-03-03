@@ -7,18 +7,8 @@ import java.rmi.registry.Registry;
 public class Deployer {
 
     public static void main(String[] args) {
-        System.setProperty("java.security.policy",
-                "src/mx/itam/packages/bagoftasks/server/server.policy");
-
-        if(System.getSecurityManager() == null) {
-            System.setSecurityManager(new SecurityManager());
-        }
 
         try {
-
-            String serverAddres = "localhost";
-            System.setProperty("java.rmi.server.hostname",serverAddres);
-
             LocateRegistry.createRegistry(1099);
 
             Registry registry = LocateRegistry.getRegistry();

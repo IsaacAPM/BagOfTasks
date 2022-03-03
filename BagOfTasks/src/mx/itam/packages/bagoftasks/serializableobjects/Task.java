@@ -53,6 +53,6 @@ public class Task implements Serializable {
                 ", requirementId='" + requirementId + '\'' +
                 ", length=" + length +
                 ", output='" + output + '\'' +
-                '}';
+                "}\n";
     }
 }

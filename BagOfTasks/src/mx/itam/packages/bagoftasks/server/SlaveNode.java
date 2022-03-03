@@ -20,7 +20,6 @@ public class SlaveNode implements Bioinformatics, DataMining, ImageProcessing {
     }
 
     public SlaveNode(String tipoServicio, Registry registry) throws RemoteException{
-        super();
         this.tipoServicio = tipoServicio;
         this.registry = registry;
     }
@@ -34,12 +33,15 @@ public class SlaveNode implements Bioinformatics, DataMining, ImageProcessing {
             if(this.tipoServicio.equals("Imagenes")){
                 ImageProcessing stub = (ImageProcessing) UnicastRemoteObject.exportObject(engine,0);
                 this.registry.rebind(this.tipoServicio, stub);
+                System.out.println("Servicio de imagenes desplegado");
             }else if(this.tipoServicio.equals("Mineria")){
                 DataMining stub = (DataMining) UnicastRemoteObject.exportObject(engine,0);
                 this.registry.rebind(this.tipoServicio, stub);
+                System.out.println("Servicio de mineria desplegado");
             }else if(this.tipoServicio.equals("Bioinformatica")){
                 Bioinformatics stub = (Bioinformatics) UnicastRemoteObject.exportObject(engine,0);
                 this.registry.rebind(this.tipoServicio, stub);
+                System.out.println("Servicio de bioinformatica desplegado");
             }else {
                 System.out.println("Tipo de servicio invàlido");
             }
