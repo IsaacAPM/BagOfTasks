@@ -32,8 +32,11 @@ public class MasterNode {
                 i++;
                 switch (j){
                     case 20: j = 30;
+                        break;
                     case 30: j = 5;
+                        break;
                     default: j = j + 5;
+                        break;
                 }
             }
             j = 5;
@@ -42,8 +45,11 @@ public class MasterNode {
                 i++;
                 switch (j){
                     case 20: j = 30;
+                        break;
                     case 30: j = 5;
+                        break;
                     default: j = j + 5;
+                        break;
                 }
             }
             j = 5;
@@ -52,8 +58,11 @@ public class MasterNode {
                 i++;
                 switch (j){
                     case 20: j = 30;
+                        break;
                     case 30: j = 5;
+                        break;
                     default: j = j + 5;
+                        break;
                 }
             }
 
